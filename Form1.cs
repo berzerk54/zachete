@@ -12,7 +12,7 @@ namespace zachete
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -30,74 +30,70 @@ namespace zachete
             Random rnd = new Random();
 
             n = rnd.Next(1, 10);
-            m= rnd.Next(1, 10);
-            
+            m = rnd.Next(1, 10);
+
             textBox1.Text = n.ToString();
             textBox2.Text = m.ToString();
-            int[] str = new int[n];
-            int[] col = new int[m];
+            /*int[] str = new int[n];
+            int[] col = new int[m];*/
+            int[,] mas = new int[n, m];
             int[] d = new int[m];
 
-            for (int i = 0; i < str.Length; i++)
-            {
-                str[i] = rnd.Next(1, 99);
-            }
-            for (int i = 0; i < col.Length; i++)
-            {
-                col[i] = rnd.Next(1, 99);
-            }
-            clear_Grid();
-
-            DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[n];
-            DataGridViewTextBoxColumn[] column2 = new DataGridViewTextBoxColumn[n];
 
             for (int i = 0; i < n; i++)
             {
-                column[i] = new DataGridViewTextBoxColumn(); // выделяем память для объекта
-                column2[i] = new DataGridViewTextBoxColumn();
-                //column[i].HeaderText = "Header" + i;
-                //column[i].Name = "Header" + i ;
-            }
-
-            this.dataGridView1.Columns.AddRange(column); // добавление столбцов
-            for (int i = 1; i < m; i++)
-            {
-                this.dataGridView1.Rows.Add();  // добавление строк
-            }
-            this.dataGridView2.Columns.AddRange(column2); // добавление столбцов
-            for (int i = 0; i < m; i++)
-            {
-               
-            }
-
-            for (int x = 0; x < dataGridView1.ColumnCount; x++)
-            {
-                for (int y = 0; y < dataGridView1.RowCount; y++)
+                for (int j = 0; j < m; j++)
                 {
-                    this.dataGridView1[x, y].Value = rnd.Next(1, 99); // Значения берутся рандомно из заданного пользователем интервала
+                    mas[i, j] = rnd.Next(1, 99);
+                }
+                clear_Grid();
+
+                DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[n];
+                DataGridViewTextBoxColumn[] column2 = new DataGridViewTextBoxColumn[n];
+
+                for (int z = 0; z < n; z++)
+                {
+                    column[z] = new DataGridViewTextBoxColumn(); // выделяем память для объекта
+                    column2[z] = new DataGridViewTextBoxColumn();
+
                 }
 
-            }
-
-            //сортируем столбцы
-            for (int x = 0; x < dataGridView1.ColumnCount; x++)
-            {
-                for (int y = 0; y < dataGridView1.RowCount; y++)
+                this.dataGridView1.Columns.AddRange(column); // добавление столбцов
+                for (int k = 1; k < m; k++)
                 {
-                    int min = str[0];
-                    for (int i = 0; i < dataGridView1.RowCount; i++)
+                    this.dataGridView1.Rows.Add();  // добавление строк
+                }
+                this.dataGridView2.Columns.AddRange(column2); // добавление столбцов
+                for (int k = 1; k < m; k++)
+                {
+
+                }
+
+                for (int x = 0; x < dataGridView1.ColumnCount; x++)
+                {
+                    for (int y = 0; y < dataGridView1.RowCount; y++)
                     {
-                        if (min > str[i])
-                        {
-                            min = str[i];
-                            dataGridView2[x, 0].Value = str[i];
-                        }
+                        this.dataGridView1[x, y].Value = rnd.Next(1, 99); // Значения берутся рандомно из заданного пользователем интервала
                     }
-                    
-                    
+
                 }
+
+                //сортируем столбцы
+                int min = mas[0, 0];
+
+                for ( i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        if (min > mas[i, j])
+                            min = mas[i, j];
+                    }
+                    dataGridView2[i, 0].Value = min;
+                }
+
             }
         }
+
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -111,20 +107,11 @@ namespace zachete
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /* for (int i = 0; i < str.Length; i++)
-             {
-                 str[i] = rnd.Next(1, 99);
-             }
-             for (int i = 0; i < col.Length; i++)
-             {
-                 col[i] = rnd.Next(1, 99);
-             }*/
-
-            //for (int i = 0; i< )
+            
 
         }
 
-          
+
     }
-    
+
 }
