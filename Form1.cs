@@ -12,7 +12,7 @@ namespace zachete
 {
     public partial class Form1 : Form
     {
-
+        int[,] Mas { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +24,14 @@ namespace zachete
             dataGridView1.Columns.Clear();
             dataGridView2.Columns.Clear();
         }
-        private void button1_Click(object sender, EventArgs e)
+      
+        public  void mas_init(int n, int m)
+        {
+            
+            
+            
+        }
+        public void button1_Click(object sender, EventArgs e)
         {
             int n, m;
             Random rnd = new Random();
@@ -34,6 +41,7 @@ namespace zachete
 
             textBox1.Text = n.ToString();
             textBox2.Text = m.ToString();
+           
             /*int[] str = new int[n];
             int[] col = new int[m];*/
             int[,] mas = new int[n, m];
@@ -80,21 +88,20 @@ namespace zachete
 
                 //сортируем столбцы
 
-         
-                 
-
-                    for (i = 0; i < mas.GetLength(0); i++)
+                /*for ( i = 0; i < mas.GetLength(0); i++)
                 {
-                    int min = mas[0, 0];
+
+                    int min = Convert.ToInt32(dataGridView1[i, 0].Value);
                     for (int j = 0; j < mas.GetLength(1); j++)
-                        {
-                            min = mas[0, 0];
-                        }
-                        dataGridView2[i, 0].Value = min;
+                    {
+                        if (min > Convert.ToInt32(dataGridView1[i, j].Value))
+                            min = Convert.ToInt32(dataGridView1[i, j].Value);
                     }
-                    
+                    dataGridView2[i, 0].Value = min;
                 }
+                */
             }
+        }
 
         
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -110,10 +117,36 @@ namespace zachete
         private void button2_Click(object sender, EventArgs e)
         {
             
+            
+            for (int i = 0; i < Mas.GetLength(0); i++)
+            {
+
+                int min = Convert.ToInt32(dataGridView1[i, 0].Value);
+                for (int j = 0; j < Mas.GetLength(1); j++)
+                {
+                    if (min > Convert.ToInt32(dataGridView1[i, j].Value))
+                        min = Convert.ToInt32(dataGridView1[i, j].Value);
+                }
+                dataGridView2[i, 0].Value = min;
+            }
 
         }
 
+        private void стартToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button1_Click(sender,e);
+        }
 
+        private void минимумToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button2_Click(sender, e);
+        }
+
+        private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) contextMenuStrip1.Show(Cursor.Position);
+        }
+    }
     }
 
-}
+
