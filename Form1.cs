@@ -12,7 +12,7 @@ namespace zachete
 {
     public partial class Form1 : Form
     {
-        int[,] Mas { get; set; }
+        
         public Form1()
         {
             InitializeComponent();
@@ -24,28 +24,22 @@ namespace zachete
             dataGridView1.Columns.Clear();
             dataGridView2.Columns.Clear();
         }
-      
-        public  void mas_init(int n, int m)
-        {
-            
-            
-            
-        }
+        static int n, m;
+        static Random rnd = new Random();
+        static int[,] mas; 
+        static int[] d = new int[m];
         public void button1_Click(object sender, EventArgs e)
         {
-            int n, m;
-            Random rnd = new Random();
-
-            n = rnd.Next(1, 10);
-            m = rnd.Next(1, 10);
+           n= rnd.Next(1, 10);
+           m = rnd.Next(1, 10);
 
             textBox1.Text = n.ToString();
             textBox2.Text = m.ToString();
-           
+
             /*int[] str = new int[n];
             int[] col = new int[m];*/
-            int[,] mas = new int[n, m];
-            int[] d = new int[m];
+            mas = new int[n, m];
+
 
 
             for (int i = 0; i < mas.GetLength(0); i++)
@@ -85,21 +79,7 @@ namespace zachete
                     }
 
                 }
-
-                //сортируем столбцы
-
-                /*for ( i = 0; i < mas.GetLength(0); i++)
-                {
-
-                    int min = Convert.ToInt32(dataGridView1[i, 0].Value);
-                    for (int j = 0; j < mas.GetLength(1); j++)
-                    {
-                        if (min > Convert.ToInt32(dataGridView1[i, j].Value))
-                            min = Convert.ToInt32(dataGridView1[i, j].Value);
-                    }
-                    dataGridView2[i, 0].Value = min;
-                }
-                */
+                                            
             }
         }
 
@@ -118,11 +98,11 @@ namespace zachete
         {
             
             
-            for (int i = 0; i < Mas.GetLength(0); i++)
+            for (int i = 0; i < mas.GetLength(0); i++)
             {
 
                 int min = Convert.ToInt32(dataGridView1[i, 0].Value);
-                for (int j = 0; j < Mas.GetLength(1); j++)
+                for (int j = 0; j < mas.GetLength(1); j++)
                 {
                     if (min > Convert.ToInt32(dataGridView1[i, j].Value))
                         min = Convert.ToInt32(dataGridView1[i, j].Value);
