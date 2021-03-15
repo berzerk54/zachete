@@ -40,9 +40,9 @@ namespace zachete
             int[] d = new int[m];
 
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < mas.GetLength(0); i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < mas.GetLength(1); j++)
                 {
                     mas[i, j] = rnd.Next(1, 99);
                 }
@@ -51,7 +51,7 @@ namespace zachete
                 DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[n];
                 DataGridViewTextBoxColumn[] column2 = new DataGridViewTextBoxColumn[n];
 
-                for (int z = 0; z < n; z++)
+                for (int z = 0; z < mas.GetLength(0); z++)
                 {
                     column[z] = new DataGridViewTextBoxColumn(); // выделяем память для объекта
                     column2[z] = new DataGridViewTextBoxColumn();
@@ -59,12 +59,12 @@ namespace zachete
                 }
 
                 this.dataGridView1.Columns.AddRange(column); // добавление столбцов
-                for (int k = 1; k < m; k++)
+                for (int k = 1; k < mas.GetLength(1); k++)
                 {
                     this.dataGridView1.Rows.Add();  // добавление строк
                 }
                 this.dataGridView2.Columns.AddRange(column2); // добавление столбцов
-                for (int k = 1; k < m; k++)
+                for (int k = 1; k < mas.GetLength(1); k++)
                 {
 
                 }
@@ -79,22 +79,24 @@ namespace zachete
                 }
 
                 //сортируем столбцы
-                int min = mas[0, 0];
 
-                for ( i = 0; i < n; i++)
+         
+                 
+
+                    for (i = 0; i < mas.GetLength(0); i++)
                 {
-                    for (int j = 0; j < m; j++)
-                    {
-                        if (min > mas[i, j])
-                            min = mas[i, j];
+                    int min = mas[0, 0];
+                    for (int j = 0; j < mas.GetLength(1); j++)
+                        {
+                            min = mas[0, 0];
+                        }
+                        dataGridView2[i, 0].Value = min;
                     }
-                    dataGridView2[i, 0].Value = min;
+                    
                 }
-
             }
-        }
 
-
+        
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Разработано Волжанкиным А.А., группа ПБТ-94", "А кто это сделал?", MessageBoxButtons.OK, MessageBoxIcon.Information);
