@@ -55,12 +55,12 @@ namespace zachete
             {
                 column[i] = new DataGridViewTextBoxColumn(); // выделяем память для объекта
                 column2[i] = new DataGridViewTextBoxColumn();
-                column[i].HeaderText = "Header" + i;
-                column[i].Name = "Header" + i;
+                //column[i].HeaderText = "Header" + i;
+                //column[i].Name = "Header" + i ;
             }
 
             this.dataGridView1.Columns.AddRange(column); // добавление столбцов
-            for (int i = 0; i < m; i++)
+            for (int i = 1; i < m; i++)
             {
                 this.dataGridView1.Rows.Add();  // добавление строк
             }
@@ -74,9 +74,28 @@ namespace zachete
             {
                 for (int y = 0; y < dataGridView1.RowCount; y++)
                 {
-                    dataGridView1[x, y].Value = rnd.Next(1, 99); // Значения берутся рандомно из заданного пользователем интервала
+                    this.dataGridView1[x, y].Value = rnd.Next(1, 99); // Значения берутся рандомно из заданного пользователем интервала
                 }
 
+            }
+
+            //сортируем столбцы
+            for (int x = 0; x < dataGridView1.ColumnCount; x++)
+            {
+                for (int y = 0; y < dataGridView1.RowCount; y++)
+                {
+                    int min = str[0];
+                    for (int i = 0; i < dataGridView1.RowCount; i++)
+                    {
+                        if (min > str[i])
+                        {
+                            min = str[i];
+                            dataGridView2[x, 0].Value = str[i];
+                        }
+                    }
+                    
+                    
+                }
             }
         }
 
@@ -92,19 +111,20 @@ namespace zachete
 
         private void button2_Click(object sender, EventArgs e)
         {
-           /* for (int i = 0; i < str.Length; i++)
-            {
-                str[i] = rnd.Next(1, 99);
-            }
-            for (int i = 0; i < col.Length; i++)
-            {
-                col[i] = rnd.Next(1, 99);
-            }*/
+            /* for (int i = 0; i < str.Length; i++)
+             {
+                 str[i] = rnd.Next(1, 99);
+             }
+             for (int i = 0; i < col.Length; i++)
+             {
+                 col[i] = rnd.Next(1, 99);
+             }*/
 
-            for (int i = 0; i< )
+            //for (int i = 0; i< )
+
         }
 
-        //  field_Init(n, m);
+          
     }
     
 }
