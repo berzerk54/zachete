@@ -95,7 +95,7 @@ namespace zachete
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        { label4.Text = "";
             string[] column0Array = new string[dataGridView1.Columns.Count];
             int[] d = new int[mas.GetLength(1)];
             for (int i = 0; i < mas.GetLength(0); i++)
@@ -113,12 +113,12 @@ namespace zachete
                
             }
             
-            for (int k=0;k<mas.GetLength(1); k++ )
+            for (int k=0;k<mas.GetLength(0); k++ )
             {
                 d[k] = Convert.ToInt32(dataGridView2.Rows[0].Cells[k].Value);
-                label4.Text = Convert.ToString(d[k]) + ' ';
+                label4.Text = label4.Text + Convert.ToString(d[k]) + ' ';
             }
-            
+            label4.Text = "Массив D: "+label4.Text ;
         }
 
         private void стартToolStripMenuItem_Click(object sender, EventArgs e)
