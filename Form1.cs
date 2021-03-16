@@ -30,11 +30,29 @@ namespace zachete
 
         public void button1_Click(object sender, EventArgs e)
         {
-            n = rnd.Next(1, 10);
-            m = rnd.Next(1, 10);
+            switch (checkBox1.Checked)
+            {
+                case true:
+                    {
+                        n = rnd.Next(1, 10);
+                        m = rnd.Next(1, 10);
+                        textBox1.Text = n.ToString();
+                        textBox2.Text = m.ToString();
+                        break;
+                    }
+                case false:
+                    {
+                        n = Convert.ToInt32( textBox1.Text);
+                        m = Convert.ToInt32( textBox2.Text);
 
-            textBox1.Text = n.ToString();
-            textBox2.Text = m.ToString();
+
+                        break;
+                    }
+            }
+           
+          
+
+            
 
             /*int[] str = new int[n];
             int[] col = new int[m];*/
@@ -50,10 +68,10 @@ namespace zachete
                 }
                 clear_Grid();
 
-                DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[n];
-                DataGridViewTextBoxColumn[] column2 = new DataGridViewTextBoxColumn[n];
+                DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[m];
+                DataGridViewTextBoxColumn[] column2 = new DataGridViewTextBoxColumn[m];
 
-                for (int z = 0; z < mas.GetLength(0); z++)
+                for (int z = 0; z < mas.GetLength(1); z++)
                 {
                     column[z] = new DataGridViewTextBoxColumn(); // выделяем память для объекта
                     column2[z] = new DataGridViewTextBoxColumn();
@@ -61,12 +79,12 @@ namespace zachete
                 }
 
                 this.dataGridView1.Columns.AddRange(column); // добавление столбцов
-                for (int k = 1; k < mas.GetLength(1); k++)
+                for (int k = 1; k < mas.GetLength(0); k++)
                 {
                     this.dataGridView1.Rows.Add();  // добавление строк
                 }
                 this.dataGridView2.Columns.AddRange(column2); // добавление столбцов
-                for (int k = 1; k < mas.GetLength(1); k++)
+                for (int k = 1; k < mas.GetLength(0); k++)
                 {
 
                 }
@@ -95,14 +113,17 @@ namespace zachete
         }
 
         private void button2_Click(object sender, EventArgs e)
-        { label4.Text = "";
-            string[] column0Array = new string[dataGridView1.Columns.Count];
+        { 
+            label4.Text = "";
+            
             int[] d = new int[mas.GetLength(1)];
-            for (int i = 0; i < mas.GetLength(0); i++)
+            
+            //ищем минимальные значения
+            for (int i = 0; i < mas.GetLength(1); i++)
             {
 
-                int min = Convert.ToInt32(dataGridView1[i, 0].Value);
-                for (int j = 0; j < mas.GetLength(1); j++)
+                int min = Convert.ToInt32(dataGridView1[i,0].Value);
+                for (int j = 0; j < mas.GetLength(0); j++)
                 {
                     if (min > Convert.ToInt32(dataGridView1[i, j].Value))
                         min = Convert.ToInt32(dataGridView1[i, j].Value);
@@ -113,7 +134,7 @@ namespace zachete
                
             }
             
-            for (int k=0;k<mas.GetLength(0); k++ )
+            for (int k=0;k<mas.GetLength(1); k++ )
             {
                 d[k] = Convert.ToInt32(dataGridView2.Rows[0].Cells[k].Value);
                 label4.Text = label4.Text + Convert.ToString(d[k]) + ' ';
@@ -131,9 +152,42 @@ namespace zachete
             button2_Click(sender, e);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void checkBox2_Click(object sender, EventArgs e)
         {
+            switch (checkBox2.Checked)
+            {
+                case true:
+                    {
+                        label4.Visible = true;
+                        break;
+                    }
+                case false:
+                    {
+                        label4.Visible = false;
+                        break;
+                    }
+            }
+               
+            
+        }
 
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            switch (checkBox1.Checked)
+            {
+                case true:
+                    {
+                        textBox1.Enabled = false;
+                        textBox2.Enabled = false;
+                        break;
+                    }
+                case false:
+                    {
+                        textBox1.Enabled = true;
+                        textBox2.Enabled = true;
+                        break;
+                    }
+            }
         }
 
         private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
