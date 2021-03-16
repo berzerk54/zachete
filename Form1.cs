@@ -12,7 +12,7 @@ namespace zachete
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -26,12 +26,12 @@ namespace zachete
         }
         static int n, m;
         static Random rnd = new Random();
-        static int[,] mas; 
-        static int[] d = new int[m];
+        static int[,] mas;
+
         public void button1_Click(object sender, EventArgs e)
         {
-           n= rnd.Next(1, 10);
-           m = rnd.Next(1, 10);
+            n = rnd.Next(1, 10);
+            m = rnd.Next(1, 10);
 
             textBox1.Text = n.ToString();
             textBox2.Text = m.ToString();
@@ -79,11 +79,11 @@ namespace zachete
                     }
 
                 }
-                                            
+
             }
         }
 
-        
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Разработано Волжанкиным А.А., группа ПБТ-94", "А кто это сделал?", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -96,8 +96,8 @@ namespace zachete
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            
+            string[] column0Array = new string[dataGridView1.Columns.Count];
+            int[] d = new int[mas.GetLength(1)];
             for (int i = 0; i < mas.GetLength(0); i++)
             {
 
@@ -106,10 +106,19 @@ namespace zachete
                 {
                     if (min > Convert.ToInt32(dataGridView1[i, j].Value))
                         min = Convert.ToInt32(dataGridView1[i, j].Value);
+                    
                 }
+               
                 dataGridView2[i, 0].Value = min;
+               
             }
-
+            
+            for (int k=0;k<mas.GetLength(1); k++ )
+            {
+                d[k] = Convert.ToInt32(dataGridView2.Rows[0].Cells[k].Value);
+                label4.Text = Convert.ToString(d[k]) + ' ';
+            }
+            
         }
 
         private void стартToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,6 +129,11 @@ namespace zachete
         private void минимумToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button2_Click(sender, e);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
